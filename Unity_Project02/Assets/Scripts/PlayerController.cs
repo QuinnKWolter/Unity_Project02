@@ -81,10 +81,16 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider col) {
-		Debug.Log(col);
 		if (col.tag == "CameraInfluence") {
-			Debug.Log("Escaped!");
 			col.gameObject.transform.parent.GetComponent<SecurityCam>().AlertCamera(false);
 		}
 	}
+
+    void OnTriggerStay(Collider col)
+    {
+        if (col.tag == "InfoInfluence")
+        {
+            col.gameObject.transform.parent.GetComponent<InfoNode>().Convert();
+        }
+    }
 }

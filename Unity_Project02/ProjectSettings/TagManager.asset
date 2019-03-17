@@ -6,6 +6,10 @@ TagManager:
   tags:
   - SecurityCamera
   - CameraInfluence
+  - LaserTrigger
+  - Laser
+  - InfoInfluence
+  - InfoNode
   layers:
   - Default
   - TransparentFX
