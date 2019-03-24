@@ -226,7 +226,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.38039216, g: 1, b: 0.53333336, a: 1}
   m_Intensity: 5
-  m_Range: 10
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -5720,7 +5720,7 @@ ParticleSystem:
 --- !u!199 &6885168578557881065
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -11047,7 +11047,7 @@ ParticleSystem:
 --- !u!199 &6885168579181330276
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

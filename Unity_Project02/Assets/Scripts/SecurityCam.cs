@@ -23,7 +23,7 @@ public class SecurityCam : MonoBehaviour {
 	void FixedUpdate() {
 		if (!alerted) {
             RaycastHit hit;
-            neck.transform.rotation = Quaternion.Euler(0f, maxRotation * Mathf.Sin(Time.time * rotationSpeed) + 45f, 0f);
+			neck.transform.rotation = neckStartRotation * Quaternion.Euler(0f, maxRotation * Mathf.Sin(Time.time * rotationSpeed) + 45f, 0f);
 			for (int i=0; i<11; i++) {
 				// Unity Documentation
 				if (Physics.Raycast(eye.transform.position, (transform.position - sightTargets[i].transform.position).normalized*-10, out hit, 50) && hit.collider.tag == "Player")
@@ -35,7 +35,7 @@ public class SecurityCam : MonoBehaviour {
 				}
 				else
 				{
-					// Debug.DrawRay(eye.transform.position, (transform.position - sightTargets[i].transform.position).normalized*-10, Color.yellow, 20);
+					Debug.DrawRay(eye.transform.position, (transform.position - sightTargets[i].transform.position).normalized*-10, Color.yellow, 20);
 					// Debug.Log("Did not Hit");
 				}
 			}
