@@ -5,7 +5,7 @@ using UnityEngine;
 public class InfoNode : MonoBehaviour
 {
     public float conversion, speed;
-    public GameObject ring1, ring2, particles, light, influence, finale;
+    public GameObject ring1, ring2, particles, light, influence, finale, gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public class InfoNode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        gameManager = GameObject.Find("GameManager");
     }
 
     private void FixedUpdate()
@@ -35,11 +35,12 @@ public class InfoNode : MonoBehaviour
             ring1.SetActive(false);
             ring2.SetActive(false);
             finale.SetActive(true);
+            gameManager.GetComponent<GameManager>().terminalAccessed();
         } else
         {
             conversion -= .5f;
             speed += .1f;
-            Debug.Log(conversion);
+            //Debug.Log(conversion);
         } 
     }
 }

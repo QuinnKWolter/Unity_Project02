@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SecurityCam : MonoBehaviour {
 
-	public GameObject neck, head, eye, influence;
+	public GameObject neck, head, eye, influence, gameManager;
 	public GameObject[] sightTargets;
 	public AudioSource alert, alarm;
 	public float rotationSpeed, maxRotation;
@@ -16,7 +16,8 @@ public class SecurityCam : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindWithTag("Player");
-		neckStartRotation = neck.transform.rotation;
+        gameManager = GameObject.Find("GameManager");
+        neckStartRotation = neck.transform.rotation;
 		headStartRotation = head.transform.rotation;
 	}
 
@@ -47,7 +48,8 @@ public class SecurityCam : MonoBehaviour {
 	public void AlertCamera(bool isAlerted) {
 		alerted = isAlerted;
 		if (isAlerted == false) {
-			neck.transform.rotation = neckStartRotation;
+            gameManager.GetComponent<GameManager>().setDetectionSpeed(1f);
+            neck.transform.rotation = neckStartRotation;
 			head.transform.rotation = headStartRotation;
 			alarm.Stop();
 		}

@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 	CharacterController player;
 
+    public GameManager gameManager;
 	public float moveSpeed;
 	public float jumpSpeed;
 
@@ -13,8 +14,8 @@ public class PlayerController : MonoBehaviour {
 	// https://answers.unity.com/questions/29741/mouse-look-script.html
 	public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
 	public RotationAxes axes = RotationAxes.MouseXAndY;
-	public float sensitivityX = 15F;
-	public float sensitivityY = 15F;
+	public float sensitivityX = 5F;
+	public float sensitivityY = 5F;
 	public float minimumX = -360F;
 	public float maximumX = 360F;
 	public float minimumY = -60F;
@@ -34,9 +35,9 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (player.isGrounded && Input.GetButton("Jump")){
-			player.Move(new Vector3(0,jumpSpeed,0) * Time.deltaTime);
-		}
+		//if (player.isGrounded && Input.GetButton("Jump")){
+			//player.Move(new Vector3(0,jumpSpeed,0) * Time.deltaTime);
+		//}
 		Vector3 frontBack = Input.GetAxis("Vertical")*transform.TransformDirection(Vector3.forward)*moveSpeed;
 		Vector3 leftRight = Input.GetAxis("Horizontal")*transform.TransformDirection(Vector3.right)*moveSpeed;
 		player.Move((frontBack + leftRight) * Time.deltaTime);
@@ -80,8 +81,17 @@ public class PlayerController : MonoBehaviour {
 		return Mathf.Clamp (angle, min, max);
 	}
 
-	void OnTriggerExit(Collider col) {
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.tag == "WinZone")
+        {
+            gameManager.winGame();
+        }
+    }
+
+    void OnTriggerExit(Collider col) {
 		if (col.tag == "CameraInfluence") {
+            gameManager.setDetectionSpeed(0.25f);
 			col.gameObject.transform.parent.GetComponent<SecurityCam>().AlertCamera(false);
 		}
 	}
@@ -92,5 +102,11 @@ public class PlayerController : MonoBehaviour {
         {
             col.gameObject.transform.parent.GetComponent<InfoNode>().Convert();
         }
+    }
+
+    public void setLookSpeed(float x, float y)
+    {
+        sensitivityX = x;
+        sensitivityY = y;
     }
 }
